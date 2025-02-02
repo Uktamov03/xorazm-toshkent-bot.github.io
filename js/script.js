@@ -42,12 +42,8 @@ function addPrefix(event) {
     tokenBot = "7855425337:AAFy18wAwne0JHEnu1RTj6But_AdYWlkdE0",
     chatId = "-1002442975458";
 
-  const orders1 = document.querySelectorAll(".order1");
+  const orders = document.querySelectorAll(".order");
   let selectedOrder = "Taksi zakas";
-
-  // Yo'nalishlar ro'yxatiga kiruvchi elementlar
-  const orders2 = document.querySelectorAll(".order2");
-  let selectedRoute = "Toshkent - Xorazm";
 
   const habarlar = {
     loading: "Loading...",
@@ -55,29 +51,16 @@ function addPrefix(event) {
     failure: "Nimadir xato ketti keyinroq urinib ko'ring",
   };
   // Buyurtmalar ro'yxatidagi itemlarga event listener qo'shish
-  orders1.forEach((order) => {
+  orders.forEach((order) => {
     order.addEventListener("click", () => {
       // Barcha buyurtmalarni "active" holatdan chiqarish
-      orders1.forEach((order) => order.classList.remove("active"));
+      orders.forEach((order) => order.classList.remove("active"));
 
       // Tanlangan buyurtmaga "active" holatini qo'shish
       order.classList.add("active");
       selectedOrder = order.textContent; // Tanlangan buyurtma nomini saqlash
     });
   });
-
-  // Yo'nalishlar ro'yxatidagi itemlarga event listener qo'shish
-  orders2.forEach((route) => {
-    route.addEventListener("click", () => {
-      // Barcha yo'nalishlarni "active" holatdan chiqarish
-      orders2.forEach((route) => route.classList.remove("active"));
-
-      // Tanlangan yo'nalishga "active" holatini qo'shish
-      route.classList.add("active");
-      selectedRoute = route.textContent; // Tanlangan yo'nalish nomini saqlash
-    });
-  });
-
   form.addEventListener("submit", (event) => {
     event.preventDefault();
     // form.reset()
@@ -99,8 +82,6 @@ function addPrefix(event) {
         chat_id: chatId,
         text: `
           Buyurtma: ${selectedOrder}
-  
-  Yo'nalish: ${selectedRoute} 
   
   Telefon raqam: ${object.phone}
   
