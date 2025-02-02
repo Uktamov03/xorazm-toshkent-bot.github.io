@@ -97,12 +97,15 @@ body{
     background-color:#1d3557;
 }
 .active{
-    color: #fff;
-    background-color: #fca311 ;
+    Background: #ffc107;
+    color: #FFFFFF;
+    transform: scale(1.05); /* Tugma biroz kattalashadi */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
 }
-.button:active{
-    color: #fff;
-    background-color: #fca311 ;
+.button:active {
+    background-color: #28a745;
+    transform: scale(1.05); /* Tugma biroz kattalashadi */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 .show{
     display: block;
