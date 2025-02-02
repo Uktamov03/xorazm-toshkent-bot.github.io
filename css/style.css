@@ -30,26 +30,20 @@ body{
     gap: 10px;
     
 }
-.orders1{
+.orders{
     list-style: none;
     display: flex;
     gap: 15px;
     flex-wrap: wrap;
     justify-content: center;
 }
-.orders2{
-    list-style: none;
-    display: flex;
-    gap: 15px;
-    flex-wrap: wrap;
-    justify-content: center;
-}
+
 .title{
     font-size: 28px;
     color: #001d3d;
     /* margin-top: 10px; */
 }
-.order1{
+.order{
     background-color: #003566;
     padding: 6px;
     border-radius: 10px;
@@ -58,15 +52,7 @@ body{
     color: #ffc300;
     cursor: pointer;
 }
-.order2{
-    background-color: #003566;
-    padding: 6px;
-    border-radius: 10px;
-    font-size: 20px;
-    line-height: 30px;
-    color: #ffc300;
-    cursor: pointer;
-}
+
 .malumot{
     display: flex;
     flex-direction: column;
