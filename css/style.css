@@ -41,6 +41,7 @@ body{
 .title{
     font-size: 28px;
     color: #001d3d;
+    font-family: 'Poppins', sans-serif;      
     /* margin-top: 10px; */
 }
 .order{
@@ -51,6 +52,7 @@ body{
     line-height: 30px;
     color: #ffc300;
     cursor: pointer;
+    font-family: 'Bebas Neue', sans-serif;
 }
 
 .malumot{
