@@ -42,7 +42,6 @@ body{
     font-size: 28px;
     color: #001d3d;
     font-family: 'Poppins', sans-serif;      
-    /* margin-top: 10px; */
 }
 .order{
     background-color: #003566;
@@ -87,12 +86,12 @@ body{
 .active{
     Background: #ffc107;
     color: #FFFFFF;
-    transform: scale(1.05); /* Tugma biroz kattalashadi */
+    transform: scale(1.05); 
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
 }
 .button:active {
     background-color: #28a745;
-    transform: scale(1.05); /* Tugma biroz kattalashadi */
+    transform: scale(1.05); 
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 .show{
@@ -100,4 +99,58 @@ body{
 }
 .hide{
     display: none;
+}
+
+/* 🚕 Yo‘nalish tugmalariga hover effekti */
+.order {
+    position: relative;
+    overflow: hidden;
+    transition: background 0.3s, transform 0.2s;
+}
+
+.order:hover {
+    background: #ffaa00 !important;
+    transform: scale(1.05);
+    box-shadow: 0 4px 10px rgba(255, 170, 0, 0.5);
+}
+
+/* 📞 Input'lar va textarea'ga focus effekti */
+#phone:focus, #izoh:focus {
+    outline: none;
+    border: 2px solid #ffc300;
+    box-shadow: 0 0 8px rgba(255, 195, 0, 0.7);
+}
+
+/* 🟡 Tugmani bosganda "bosilgan" animatsiya */
+.button:active {
+    transform: scale(0.95);
+    transition: transform 0.1s ease-in-out;
+}
+
+/* ✨ Tugma hover effekti */
+.button:hover {
+    background-color: #ffdd57;
+    color: #003566;
+    box-shadow: 0 4px 10px rgba(255, 221, 87, 0.6);
+}
+
+/* 🚀 Tugmani bosganda vibratsiya effekti */
+@keyframes shake {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(-3px); }
+    50% { transform: translateX(3px); }
+    75% { transform: translateX(-3px); }
+    100% { transform: translateX(0); }
+}
+.button:active {
+    animation: shake 0.2s ease-in-out;
+}
+
+/* 💡 Formani paydo bo‘lish animatsiyasi */
+.box {
+    animation: fadeIn 0.5s ease-in-out;
+}
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
 }
