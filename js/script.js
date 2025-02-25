@@ -34,6 +34,15 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
+  // Telegram WebApp orqali foydalanuvchi ID sini olish
+  let userId = null;
+  if (window.Telegram && window.Telegram.WebApp) {
+    Telegram.WebApp.ready();
+    userId = Telegram.WebApp.initDataUnsafe?.user?.id || null;
+  }
+
+  console.log("User ID:", userId); // Foydalanuvchi ID ni console ga chiqaramiz
+
   form.addEventListener("submit", (event) => {
     event.preventDefault();
     const statusMassage = document.createElement("div");
@@ -44,11 +53,6 @@ document.addEventListener("DOMContentLoaded", () => {
     formData.forEach((value, key) => {
       object[key] = value;
     });
-
-    let userId = null;
-    if (window.Telegram && window.Telegram.WebApp) {
-      userId = Telegram.WebApp.initDataUnsafe?.user?.id || null;
-    }
 
     fetch(`https://api.telegram.org/bot${tokenBot}/sendMessage`, {
       method: "POST",
@@ -63,11 +67,13 @@ document.addEventListener("DOMContentLoaded", () => {
 📝 Izoh: ${object.izoh}
         `,
         parse_mode: "HTML",
-        reply_markup: {
-          inline_keyboard: [
-            [{ text: "📩 Lichkaga o‘tish", url: `https://t.me/user?id=${userId}` }]
-          ]
-        }
+        reply_markup: userId
+          ? {
+              inline_keyboard: [
+                [{ text: "📩 Lichkaga o‘tish", url: `https://t.me/user?id=${userId}` }],
+              ],
+            }
+          : undefined, // Agar ID null bo'lsa, tugma qo'shilmaydi
       }),
     })
       .then(() => {
