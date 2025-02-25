@@ -77,11 +77,13 @@ body{
     width: 100%;
     max-width: 120px;
     padding: 8px;
-    margin: 0 auto;
+    margin: 5px auto;
+    margin-left: 70px;
     border-radius: 20px;
     border: none;
     color: #ffc300;
     background-color:#1d3557;
+    cursor: pointer;
 }
 .active{
     Background: #ffc107;
