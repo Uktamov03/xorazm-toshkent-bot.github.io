@@ -34,14 +34,21 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // Telegram WebApp orqali foydalanuvchi ID sini olish
+  // Telegram WebApp orqali foydalanuvchi ma'lumotlarini olish
   let userId = null;
+  let userName = null;
   if (window.Telegram && window.Telegram.WebApp) {
     Telegram.WebApp.ready();
-    userId = Telegram.WebApp.initDataUnsafe?.user?.id || null;
+    const userData = Telegram.WebApp.initDataUnsafe?.user;
+    if (userData) {
+      userId = userData.id;
+      userName = userData.username; // Agar username mavjud bo'lsa
+      console.log("Foydalanuvchi ma'lumotlari:", userData);
+    } else {
+      console.log("Foydalanuvchi ma'lumotlari topilmadi");
+    }
   }
-
-  console.log("User ID:", userId); // Foydalanuvchi ID ni console ga chiqaramiz
+  console.log("User ID:", userId);
 
   form.addEventListener("submit", (event) => {
     event.preventDefault();
@@ -67,13 +74,21 @@ document.addEventListener("DOMContentLoaded", () => {
 📝 Izoh: ${object.izoh}
         `,
         parse_mode: "HTML",
+        // Foydalanuvchi ma'lumotlari mavjud bo'lsa, tugmaga profilga o'tish havolasini qo'shamiz
         reply_markup: userId
           ? {
               inline_keyboard: [
-                [{ text: "📩 Lichkaga o‘tish", url: `https://t.me/user?id=${userId}` }],
+                [
+                  {
+                    text: "📩 Lichkaga o‘tish",
+                    url: userName
+                      ? `https://t.me/${userName}` // Agar username bo'lsa
+                      : `tg://user?id=${userId}`, // Aks holda tg:// protokoli orqali
+                  },
+                ],
               ],
             }
-          : undefined, // Agar ID null bo'lsa, tugma qo'shilmaydi
+          : undefined, // Agar userId topilmasa, tugma qo'shilmaydi
       }),
     })
       .then(() => {
