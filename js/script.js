@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
     chatId = "-1002442975458";
 
   const orders = document.querySelectorAll(".order");
-  let selectedOrder = "Taksi zakas";
+  let selectedOrder = "Toshkent - Xoraxm";
 
   const habarlar = {
     loading: "Loading...",
