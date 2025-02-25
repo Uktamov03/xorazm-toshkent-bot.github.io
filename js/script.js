@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
     chatId = "-1002442975458";
 
   const orders = document.querySelectorAll(".order");
-  let selectedOrder = "Toshkent - Xoraxm";
+  let selectedOrder = "Toshkent - Xorazm";
 
   const habarlar = {
     loading: "Loading...",
@@ -20,6 +20,14 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
+  // Telegram WebApp obyektini olish
+  const tg = window.Telegram.WebApp;
+  let userId = null;
+
+  if (tg.initDataUnsafe && tg.initDataUnsafe.user) {
+    userId = tg.initDataUnsafe.user.id; // Foydalanuvchi ID sini olish
+  }
+
   form.addEventListener("submit", (event) => {
     event.preventDefault();
 
@@ -31,8 +39,6 @@ document.addEventListener("DOMContentLoaded", () => {
     formData.forEach((value, key) => {
       object[key] = value;
     });
-
-    const userId = "FOYDALANUVCHI_ID"; // Foydalanuvchi ID sini server yoki bot orqali olish kerak
 
     fetch(`https://api.telegram.org/bot${tokenBot}/sendMessage`, {
       method: "POST",
@@ -48,14 +54,16 @@ document.addEventListener("DOMContentLoaded", () => {
         `,
         parse_mode: "Markdown",
         reply_markup: {
-          inline_keyboard: [
-            [
-              {
-                text: "Lichkaga o'tish",
-                url: `tg://user?id=${userId}`,
-              },
-            ],
-          ],
+          inline_keyboard: userId
+            ? [
+                [
+                  {
+                    text: "Lichkaga o'tish",
+                    url: `tg://user?id=${userId}`,
+                  },
+                ],
+              ]
+            : [],
         },
       }),
     })
