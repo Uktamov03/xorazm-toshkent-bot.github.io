@@ -21,32 +21,16 @@
                 <li class="order" id="xt">Xorazm - Toshkent </li>
                 <li class="order" id="pochta">Pochta xizmati</li>
             </ul>
-            <form action="send.php" method="POST">
-                <!-- Telegram foydalanuvchi ma’lumotlarini saqlash uchun yashirin inputlar -->
-                <input type="hidden" name="userId" id="hiddenUserId" value="">
-                <input type="hidden" name="userName" id="hiddenUserName" value="">
-
+            <form class="malumot">
                 <label for="" class="title">Telefon raqam</label>
                 <input type="text" name="phone" id="phone" placeholder="+998XXXXXXX" required>
                 <label for="" class="title">Izoh</label>
                 <textarea name="izoh" id="izoh" placeholder="Masalan: Bugun yo'lga chiqshimiz kerak 2 tamiz yuklarimiz yo'q" required></textarea>
-                <button type="submit" class="button btn">Yuborish</button>
-              </form>
-
+                <button type="submit" class="button">Yuborish</button>
+            </form>
         </div>
     </div>
 
-    <script>
-        // Faqat Telegram WebApp ichida ishga tushsa, foydalanuvchi ma’lumotlari olinadi
-        if (window.Telegram && window.Telegram.WebApp) {
-          Telegram.WebApp.ready();
-          const userData = Telegram.WebApp.initDataUnsafe?.user || {};
-          // Agar foydalanuvchi ma’lumotlari bo‘lsa, yashirin inputlarga yozib qo‘yamiz
-          document.getElementById("hiddenUserId").value = userData.id || "";
-          document.getElementById("hiddenUserName").value = userData.username || "";
-        }
-      </script>
-      
     <script src="//code.jivo.ru/widget/zK3bwMzRWj" async></script>
 
 </body>
