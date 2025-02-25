@@ -45,7 +45,10 @@ document.addEventListener("DOMContentLoaded", () => {
       object[key] = value;
     });
 
-    const userId = 123456789; // Foydalanuvchi ID sini olish
+    let userId = null;
+    if (window.Telegram && window.Telegram.WebApp) {
+      userId = Telegram.WebApp.initDataUnsafe?.user?.id || null;
+    }
 
     fetch(`https://api.telegram.org/bot${tokenBot}/sendMessage`, {
       method: "POST",
